@@ -4,7 +4,7 @@ import random
 import logging
 from reddit_auth import authenticate
 from email_notification import send_email
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Setup logging
 logging.basicConfig(
@@ -42,7 +42,7 @@ def post_to_reddit():
             # Post the question
             logging.info(f"Posting: {question}")
             submission = subreddit.submit(title=question, selftext="")
-            post_time = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
+            post_time = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
             post_url = f"https://www.reddit.com{submission.permalink}"
             logging.info(f"Posted successfully: {question} at {post_time}")
 
@@ -51,12 +51,12 @@ def post_to_reddit():
             body = (
                 f"Hello,\n\n"
                 f"A new Reddit post has been processed. Here are the details:\n\n"
-                f"**Status:** Success\n"
-                f"**Question:** {question}\n"
-                f"**Subreddit:** {subreddit_name}\n"
-                f"**Post Time:** {post_time}\n"
-                f"**Post URL:** {post_url}\n\n"
-                f"**Automation Info:**\n"
+                f"Status: Success\n"
+                f"Question: {question}\n"
+                f"Subreddit: {subreddit_name}\n"
+                f"Post Time: {post_time}\n"
+                f"Post URL: {post_url}\n\n"
+                f"Automation Info:**\n"
                 f"- Bot Name: RedditAutomationBot\n"
                 f"- Script Version: v1.0\n\n"
                 f"Best regards,\n"
