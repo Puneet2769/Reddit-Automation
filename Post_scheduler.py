@@ -1,4 +1,5 @@
 import time
+import threading
 import pandas as pd
 import random
 import logging
@@ -8,17 +9,42 @@ from datetime import datetime, timezone
 
 # Setup logging
 logging.basicConfig(
-    filename="reddit_posting.log",
+    filename="automation.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
-def post_to_reddit():
+def email_scheduler():
+    subject = "Working Email from Reddit Bot"
+    body = "Hello, this is a Confirmation that email notification setup is working."
+    recipient_email = "puneet18112006@gmail.com"
+
+    # Send first email after 3 minutes
+    time.sleep(180)  # 3 minutes
+    try:
+        send_email(subject, body, recipient_email)
+        logging.info("First email sent successfully.")
+    except Exception as e:
+        logging.error(f"Error sending first email: {e}")
+
+    # Send emails every hour
+    email_count = 0
+    max_emails = 25  # Optional limit for safety
+    while email_count < max_emails:
+        try:
+            time.sleep(3600)  # 1 hour
+            send_email(subject, body, recipient_email)
+            email_count += 1
+            logging.info(f"Email {email_count} sent successfully.")
+        except Exception as e:
+            logging.error(f"Error sending email {email_count + 1}: {e}")
+
+
+def post_scheduler():
     reddit = authenticate()
-    subreddit_name = "AskReddit"  # Current subreddit (can be expanded later)
+    subreddit_name = "AskReddit"  # Current subreddit
     subreddit = reddit.subreddit(subreddit_name)
 
-    # Load questions from Excel
     try:
         df = pd.read_excel("questions.xlsx")
         questions = df["Question"].dropna().tolist()
@@ -39,14 +65,12 @@ def post_to_reddit():
             continue
 
         try:
-            # Post the question
             logging.info(f"Posting: {question}")
             submission = subreddit.submit(title=question, selftext="")
             post_time = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
             post_url = f"https://www.reddit.com{submission.permalink}"
             logging.info(f"Posted successfully: {question} at {post_time}")
 
-            # Send email notification
             subject = "Reddit Automation - Post Update"
             body = (
                 f"Hello,\n\n"
@@ -56,40 +80,29 @@ def post_to_reddit():
                 f"Subreddit: {subreddit_name}\n"
                 f"Post Time: {post_time}\n"
                 f"Post URL: {post_url}\n\n"
-                f"Automation Info:**\n"
-                f"- Bot Name: RedditAutomationBot\n"
-                f"- Script Version: v1.0\n\n"
                 f"Best regards,\n"
                 f"Your Reddit Automation Bot"
             )
             send_email(subject, body, "puneet18112006@gmail.com")
 
-            # Save the posted question
             with open("posted_questions.txt", "a") as file:
                 file.write(f"{question}\n")
 
-            # Wait before the next post
-            wait_time = random.randint(11, 13) * 3600  # Random wait between 11 and 13 hours
+            wait_time = random.randint(11, 13) * 3600  # Wait 11 to 13 hours
             logging.info(f"Waiting for {wait_time // 3600} hours before the next post...")
             time.sleep(wait_time)
 
         except Exception as e:
-            logging.error(f"Error posting question: {question}. Exception type: {type(e).__name__}, Error: {e}")
-            subject = "Reddit Automation - Post Error"
-            body = (
-                f"Hello,\n\n"
-                f"The following Reddit post encountered an error:\n\n"
-                f"**Status:** Failed\n"
-                f"**Question:** {question}\n"
-                f"**Subreddit:** {subreddit_name}\n\n"
-                f"**Error Details:**\n"
-                f"Exception Type: {type(e).__name__}\n"
-                f"Error Message: {e}\n\n"
-                f"Best regards,\n"
-                f"Your Reddit Automation Bot"
-            )
-            send_email(subject, body, "recipient_email@gmail.com")
+            logging.error(f"Error posting question: {question}. Exception: {e}")
             continue
 
 if __name__ == "__main__":
-    post_to_reddit()
+    # Run both schedulers concurrently
+    email_thread = threading.Thread(target=email_scheduler)
+    post_thread = threading.Thread(target=post_scheduler)
+
+    email_thread.start()
+    post_thread.start()
+
+    email_thread.join()
+    post_thread.join()
