@@ -13,16 +13,13 @@ max_emails = 25
 
 while i < max_emails:
     try:
-        # # Send email
-        # send_email(subject, body, recipient_email)
-        # print(f"Email {i + 1} sent successfully.")
-        
-        # # Sleep intervals
+        print(f"Waiting for 3 mintutes before sending")
         time.sleep(180)  # Wait for 3 minutes
         send_email(subject, body, recipient_email)
-        print(f"Email {i + 2} sent successfully.")
-        
+        print(f"Email {i + 1} sent successfully.")
+        time.sleep(5)
+        print(f"Waiting for 1 hour now")
         time.sleep(3600)  # Wait for 1 hour before the next iteration
-        i += 2  # Increment email count appropriately
+        i += 1  # Increment email count appropriately
     except Exception as e:
         print(f"An error occurred: {e}")
