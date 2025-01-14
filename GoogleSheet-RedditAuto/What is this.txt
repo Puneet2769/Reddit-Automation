@@ -1,3 +1,0 @@
-This is same as last code which automates your question reddit's subreddit askreddit but the change is in last code u had to have a local excel file which is good if u have a presets of data, but in my CASE its not I have to update it regularly so I added google sheet api so what it does is it takes the questions from google sheets and then works same
-
-I added another feature which can 

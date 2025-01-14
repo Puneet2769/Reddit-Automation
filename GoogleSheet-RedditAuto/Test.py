@@ -5,7 +5,8 @@ import time
 print("Started")
 subject = "Working Email from Reddit Bot"
 body = "Hello, this is a Confirmation that email notification setup is working."
-recipient_email = "puneet18112006@gmail.com"
+recipient_email = "reciptent@gmail.com"
+
 
 # Loop to send emails
 i = 0  # Start with 0 for a controlled loop
