@@ -44,8 +44,8 @@ Before using this bot, ensure you have the following:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<YourGitHubUsername>/reddit-question-poster.git
-cd reddit-question-poster
+git clone https://github.com/Puneet2769/Reddit-Automation.git
+cd Reddit-Automation
 2. Install Dependencies
 Ensure all necessary libraries are installed by running the following command:
 
@@ -55,7 +55,7 @@ pip install -r requirements.txt
 3. Set Up Credentials
 Reddit API Credentials
 Create a Reddit app at Reddit Apps and obtain your client_id, client_secret, username, password, and user_agent.
-Add your Reddit credentials to config_2.py:
+Add your Reddit credentials to config.py:
 python
 Copy code
 REDDIT_CLIENT_ID = "<Your Client ID>"
@@ -85,11 +85,11 @@ File Structure
 plaintext
 Copy code
 .
-├── config_2.py              # Reddit API credentials and configuration
+├── config.py                # Reddit API credentials and configuration
 ├── posted_questions.txt     # Records previously posted questions
 ├── question_checker.py      # Validates and processes questions
-├── Test.py                  # Handles email notifications
-├── Test-post.py             # Core automation script for posting to Reddit
+├── Test.py                  # you can run if u are unsure if the file is being keep running
+├── Post_scheduler.py        # Core automation script for posting to Reddit
 ├── Credentials.json         # Google Service Account credentials for Google Sheets
 ├── reddit_posting.log       # Log file for bot activity and errors
 └── requirements.txt         # List of required Python dependencies
@@ -111,3 +111,4 @@ Write tests (if applicable).
 Submit a pull request with a clear description of your changes.
 License
 This project is licensed under the MIT License. See the LICENSE file for more details.
+Puneet Poddar
