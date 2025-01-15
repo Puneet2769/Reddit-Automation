@@ -62,7 +62,7 @@ def post_to_reddit():
                 f"Best regards,\n"
                 f"Your Reddit Automation Bot"
             )
-            send_email(subject, body, "puneet18112006@gmail.com")
+            send_email(subject, body, "recipient@gmail.com")
 
             # Save the posted question
             with open("posted_questions.txt", "a") as file:
