@@ -1,6 +1,9 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 Here is a README for the main branch of your repository, without the "Test Feature," but incorporating the core functionality as seen in your code:
@@ -144,6 +147,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
   
 Let me know if you'd like any further changes or clarifications!
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
