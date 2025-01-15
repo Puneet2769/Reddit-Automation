@@ -1,72 +1,143 @@
-Certainly! Here's a sample README for your "Reddit-Automation" project, specifically for the "Test+Post" branch:
+Got it! Here’s the updated README for your new code, which involves Reddit automation, email notifications, and posting schedules without Google Sheets:
 
 ```markdown
-# Reddit Automation: Test+Post Branch
+# Reddit Question Poster Bot with Email Notifications
 
-## Overview
-
-This branch focuses on automating Reddit posts using data from Google Sheets. It allows users to schedule and manage Reddit posts efficiently, leveraging the power of Google Sheets for content management.
+A Python-based automation bot designed to streamline the process of posting dynamic, open-ended questions to the r/AskReddit subreddit. This bot integrates email notifications, logging, and scheduling features. It automatically fetches questions from an Excel file, posts them to Reddit, and sends email updates on successful and failed attempts.
 
 ## Features
 
-- **Automated Posting:** Schedule and post content to Reddit directly from Google Sheets.
-- **Content Management:** Organize and edit posts within Google Sheets for easy content updates.
-- **Error Handling:** Robust error handling to manage issues like network failures or API rate limits gracefully.
+- **🔄 Dynamic Question Management**
+  - Fetches questions directly from an Excel file (`questions.xlsx`) for easy updates.
+  - No need to rely on static local files, making it highly adaptable and up-to-date.
+
+- **✅ Question Posting to Reddit**
+  - Automatically posts open-ended questions to the r/AskReddit subreddit.
+  - Tracks previously posted questions to prevent duplicates.
+
+- **📧 Email Notifications**
+  - Sends email updates after every posting attempt, whether successful or failed.
+  - Includes essential post details such as timestamp, status, and direct URL to the post.
+
+- **📊 Logging**
+  - Logs every activity for troubleshooting, performance monitoring, and auditing purposes.
+  - All activities are logged to a file (`automation.log`).
+
+- **⏳ Posting and Email Scheduling**
+  - Posts questions on Reddit at scheduled intervals, with a random wait time between posts.
+  - Email notifications are sent initially and then every hour thereafter.
+
+- **⚠️ Error Handling**
+  - Catches errors during the posting process and sends email notifications for each failure, ensuring no issues go unnoticed.
+
+## Prerequisites
+
+Before using this bot, ensure you have the following:
+
+- Python 3.8 or higher
+- Reddit API Credentials
+- Email server setup for email notifications
+- Excel file (`questions.xlsx`) containing open-ended questions
 
 ## Installation
 
 1. **Clone the Repository:**
-
    ```bash
-   git clone https://github.com/Puneet2769/Reddit-Automation.git
+   git clone -b Test+Post https://github.com/Puneet2769/Reddit-Automation.git
+   cd Reddit-Automation
    ```
 
-2. **Navigate to the Test+Post Branch:**
-
-   ```bash
-   git checkout Test+Post
-   ```
-
-3. **Install Dependencies:**
-
+2. **Install Dependencies:**
+   Ensure all necessary libraries are installed by running the following command:
    ```bash
    pip install -r requirements.txt
    ```
 
-## Usage
+3. **Set Up Credentials:**
 
-1. **Set Up Google Sheets:**
+   - **Reddit API Credentials:**
+     - Create a Reddit app at [Reddit Apps](https://www.reddit.com/prefs/apps) and obtain your client_id, client_secret, username, password, and user_agent.
+     - Add your Reddit credentials to `config.py`:
+     ```python
+     REDDIT_CLIENT_ID = "<Your Client ID>"
+     REDDIT_SECRET = "<Your Secret>"
+     REDDIT_USERNAME = "<Your Username>"
+     REDDIT_PASSWORD = "<Your Password>"
+     USER_AGENT = "<Your User Agent>"
+     ```
 
-   - Create a new Google Sheet with the following columns: `Title`, `Content`, `Subreddit`, `Scheduled Time`.
-   - Populate the sheet with the posts you wish to schedule.
+   - **Email Setup:**
+     - Ensure you have an SMTP server configured for sending emails. The `email_notification.py` module uses this to send the emails.
+     - Update the `send_email` function with your SMTP server details.
 
-2. **Configure API Credentials:**
+4. **Prepare the Questions File:**
+   - Create an Excel file named `questions.xlsx` and add open-ended questions to the first column.
 
-   - Obtain Reddit API credentials by creating an application on [Reddit's App Preferences](https://www.reddit.com/prefs/apps).
-   - Set up Google Sheets API credentials by following the [Google Sheets API Quickstart](https://developers.google.com/sheets/api/quickstart/python).
-   - Store these credentials in a secure location and update the `config.py` file with the paths to your credentials.
-
-3. **Run the Script:**
-
+5. **Run the Script:**
+   Execute the script to start posting questions and sending email notifications:
    ```bash
-   python automate_reddit_posts.py
+   python main.py
    ```
 
-   This script will read the scheduled posts from your Google Sheet and post them to Reddit at the specified times.
+## Usage
+
+1. **Populate the Excel File:**
+   - Add open-ended questions to the first column of `questions.xlsx`.
+
+2. **Run the bot script:**
+   - Execute the core script to begin posting questions to r/AskReddit.
+
+3. **Monitor the log file:**
+   - Track activity and errors via the `automation.log` file.
+
+4. **Check your email:**
+   - Receive notifications about the status of each post attempt.
+
+## File Structure
+
+```
+.
+├── config.py                # Reddit API credentials and configuration
+├── posted_questions.txt     # Records previously posted questions
+├── email_notification.py    # Handles email notifications
+├── main.py                  # Core script for posting to Reddit and scheduling
+├── automation.log           # Log file for bot activity and errors
+├── questions.xlsx           # Excel file containing questions to be posted
+└── requirements.txt         # List of required Python dependencies
+```
+
+## Future Enhancements
+
+We are continuously improving this project. Upcoming features include:
+
+- **Support for multiple subreddits:** Easily expand the bot to post to multiple subreddits.
+- **Advanced question validation:** Implement NLP-based validation to ensure the best quality of questions.
+- **Rate-limiting support:** Incorporate features to comply with Reddit's rate-limiting rules.
+- **GUI for management:** A graphical interface for managing questions, viewing post status, and interacting with the bot.
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository, create a new branch, and submit a pull request with your proposed changes.
+We welcome contributions to improve the Reddit Question Poster Bot. Feel free to fork the repository and submit pull requests with your changes. Please ensure your code adheres to the project's coding standards and includes relevant tests.
+
+### Steps to Contribute:
+1. Fork this repository.
+2. Create a new branch for your feature or fix.
+3. Implement your changes.
+4. Write tests (if applicable).
+5. Submit a pull request with a clear description of your changes.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+**Author:** Puneet Poddar
 ```
 
-**Notes:**
+### Summary of Changes:
+- Removed references to Google Sheets.
+- Clarified Excel file integration (`questions.xlsx`).
+- Updated details for scheduling and email notification functionality.
 
-- Ensure that your `config.py` file contains the correct paths to your Reddit and Google Sheets API credentials.
-- For detailed instructions on setting up the Google Sheets API, refer to the [Google Sheets API Quickstart](https://developers.google.com/sheets/api/quickstart/python).
-- For more information on Reddit's API and creating applications, visit [Reddit's App Preferences](https://www.reddit.com/prefs/apps).
+This README reflects the code you provided and includes all necessary setup steps and explanations. Let me know if you need any further changes!
 
-By following this README, users should be able to set up and use the Reddit Automation tool effectively. 
+Puneet Poddar
