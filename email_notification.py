@@ -7,8 +7,9 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 # Email configuration
-EMAIL_ADDRESS = "jackmortan21@gmail.com"  # Your Yahoo email address
-EMAIL_PASSWORD = "hxio dabt lufc kmpk"  # App-specific password (not your regular password)
+
+EMAIL_ADDRESS = "Email"  # Your Gmail email address
+EMAIL_PASSWORD = "xxxx xxxx xxxx"  # App-specific password (not your regular password)
 
 def send_email(subject, body, recipient_email):
     try:
