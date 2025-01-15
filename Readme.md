@@ -114,7 +114,3 @@ We welcome contributions to enhance this project. Follow these steps to contribu
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 **Author**: Puneet Poddar
-
----
-
-This revised version improves the structure and formatting of the README while maintaining its content. Let me know if there are specific areas you'd like adjusted further!
