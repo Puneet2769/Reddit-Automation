@@ -1,5 +1,8 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 Here is a README for the main branch of your repository, without the "Test Feature," but incorporating the core functionality as seen in your code:
 
 ```markdown
@@ -140,4 +143,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - It does not reference any test features, focusing on the core functionality of the Reddit automation bot.
   
 Let me know if you'd like any further changes or clarifications!
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
