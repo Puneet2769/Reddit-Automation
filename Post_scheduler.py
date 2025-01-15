@@ -108,7 +108,7 @@ def post_to_reddit():
             logging.info(f"Google Sheets updated with success for question: {question}")
 
             # Wait before the next post
-            wait_time = random.randint(30, 60)  # Random wait between 30 and 60 seconds
+            wait_time = random.randint(11, 13) * 3600  # Random wait between 11 and 13 hours
             logging.info(f"Waiting for {wait_time} seconds before the next post...")
             time.sleep(wait_time)
 
