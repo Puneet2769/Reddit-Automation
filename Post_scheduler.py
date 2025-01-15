@@ -17,7 +17,7 @@ logging.basicConfig(
 def email_scheduler():
     subject = "Working Email from Reddit Bot"
     body = "Hello, this is a Confirmation that email notification setup is working."
-    recipient_email = "puneet18112006@gmail.com"
+    recipient_email = "recipient@gmail.com"
 
     # Send first email after 3 minutes
     time.sleep(180)  # 3 minutes
@@ -83,7 +83,7 @@ def post_scheduler():
                 f"Best regards,\n"
                 f"Your Reddit Automation Bot"
             )
-            send_email(subject, body, "puneet18112006@gmail.com")
+            send_email(subject, body, "recipient@gmail.com")
 
             with open("posted_questions.txt", "a") as file:
                 file.write(f"{question}\n")

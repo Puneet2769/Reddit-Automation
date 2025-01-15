@@ -1,3 +1,10 @@
 praw
-pandas
-openpyxl
+time
+random
+logging
+reddit-auth
+email-notification
+gspread
+oauth2client
+re
+google-api-python-client
